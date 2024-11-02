@@ -1,0 +1,54 @@
+target-version = "py310"
+line-length = 80
+fix = true
+
+[lint]
+select = [
+    "ANN001",  # missing type annotation for arguments
+    "ARG",     # flake8-unused-arguments
+    "B",       # flake8-bugbear
+    "BLE",     # flake8-blind-except
+    "C4",      # flake8-comprehensions
+    "C90",     # mccabe
+    "COM",     # flake8-commas
+    "E",       # pycodestyle errors
+    "ERA",     # flake8-eradicate
+    "F",       # pyflakes
+    "FBT003",  # flake8-boolean-trap
+    "FLY",     # flynt
+    "G",       # flake8-logging-format
+    "G010",    # Logging statement uses warn instead of warning
+    "G201",    # Logging .exception(...) should be used instead of .error(..., exc_info=True)
+    "G202",    # Logging statement has redundant exc_info
+    "I",       # isort
+    "INP",     # flake8-no-pep420
+    "ISC",     # flake8-implicit-str-concat
+    "LOG",     # flake8-logging
+    "N",       # pep8-naming
+    "PGH",     # pygrep-hooks
+    "PIE",     # flake8-pie
+    "PLC0414", # Import alias does not rename original package
+    "PLE",     # Error
+    "PLW",     # Warning
+    "PT",      # flake8-pytest-style
+    "PTH",     # flake8-use-pathlib
+    "PYI",     # flake8-pyi
+    "Q",       # flake8-quotes
+    "RET",     # flake8-return
+    "RSE",     # flake8-raise
+    "RUF",     # ruff-specific rules
+    "SIM",     # flake8-simplify
+    "T10",     # flake8-debugger
+    "T20",     # flake8-print
+    "TCH",     # flake8-type-checking
+    "TRY",     # tryceratops
+    "UP",      # pyupgrade
+    "W",       # pycodestyle warnings
+    "YTT",     # flake8-2020
+]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
