@@ -15,8 +15,8 @@ without having to figure anything out.
 
 The existing tools seemed inconvenient to me, so I created a tiny tool that
 generates load and can be launched with just one command. Thanks to the inline
-metadata format and the uv package and project manager, there's no need to
-manually set up environments.
+metadata format and the [uv](https://github.com/astral-sh/uv) package and
+project manager, there's no need to manually set up environments.
 
 You just need Python installed on the target machine, and that's it. No more
 worrying about virtual environments. **One file**, **one command**, and you get
@@ -29,11 +29,11 @@ your beautiful FastAPI Swagger UI ready to work.
 ## Installation
 
 ```shell
-curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.1/scapi.py
+curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.2/scapi.py
 ```
 or
 ```shell
-wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.1/scapi.py
+wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.2/scapi.py
 ```
 
 Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
@@ -83,7 +83,7 @@ status, along with the average response time for requests to the specified URL.
 
 ## You should know
 
-It is important to remember that this is a very simple, single-threaded
+It is important to understand this is a very simple, single-threaded
 application. Its purpose is to conduct small, quick tests by generating a
 relatively small number of requests, with the ability to run in almost any
 environment where Python is available and the `uv` binary can be copied.
@@ -91,3 +91,8 @@ environment where Python is available and the `uv` binary can be copied.
 If you need to perform serious load testing, this application will not be
 suitable, and you should consider more robust tools such as Locust, Apache
 JMeter, and others.
+
+## License
+
+This repository is licensed under the [MIT
+License](https://github.com/coffeewasmyidea/scapi/blob/main/LICENSE)

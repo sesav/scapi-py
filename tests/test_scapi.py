@@ -7,45 +7,65 @@ import pytest
 from scapi import RequestParams, app, done_callback, fetch
 
 
+@pytest.mark.parametrize(
+    ("method", "headers", "body", "response_header", "response_body"),
+    [
+        ("GET", {"x-secret-token": "test"}, {}, False, False),
+        ("OPTIONS", {"x-secret-token": "test"}, {}, False, False),
+        ("HEAD", {"x-secret-token": "test"}, {}, False, False),
+        (
+            "POST",
+            {"x-secret-token": "test"},
+            {"payload": "some text"},
+            True,
+            True,
+        ),
+        (
+            "PUT",
+            {"x-secret-token": "test"},
+            {"payload": "some text"},
+            True,
+            True,
+        ),
+        (
+            "PATCH",
+            {"x-secret-token": "test"},
+            {"payload": "some text"},
+            True,
+            False,
+        ),
+        (
+            "DELETE",
+            {"x-secret-token": "test"},
+            {"payload": "some text"},
+            False,
+            True,
+        ),
+    ],
+)
 @pytest.mark.asyncio
-async def test_load_get_endpoint():
+async def test_load_get_endpoint(
+    method: str,
+    headers: dict,
+    body: str,
+    response_header: bool,
+    response_body: bool,
+):
     async with httpx.AsyncClient(app=app, base_url="http://test") as client:
         params = {
             "url": "http://example.com",
-            "method": "GET",
+            "method": method,
             "attempts": 1,
             "delay": 0.001,
-            "response_header": False,
-            "response_body": False,
+            "response_header": response_header,
+            "response_body": response_body,
         }
 
         response = await client.post(
             "/load",
             params=params,
-            json={},
-            headers={"x-secret-token": "test"},
-        )
-    assert response.status_code == 200
-    await asyncio.sleep(0.5)
-
-
-@pytest.mark.asyncio
-async def test_load_post_endpoint():
-    async with httpx.AsyncClient(app=app, base_url="http://test") as client:
-        params = {
-            "url": "http://example.com",
-            "method": "POST",
-            "attempts": 1,
-            "delay": 0.001,
-            "response_header": True,
-            "response_body": True,
-        }
-
-        response = await client.post(
-            "/load",
-            params=params,
-            json={"payload": "some text"},
-            headers={"x-secret-token": "test"},
+            json=body,
+            headers=headers,
         )
     assert response.status_code == 200
     await asyncio.sleep(0.5)

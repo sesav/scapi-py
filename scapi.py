@@ -20,7 +20,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 STATUS_CODES_COUNTER = defaultdict(int)
 
@@ -33,7 +33,15 @@ app = FastAPI(docs_url="/")
 @dataclass
 class RequestParams:
     url: str
-    method: t.Literal["GET", "POST"]
+    method: t.Literal[
+        "GET",
+        "OPTIONS",
+        "HEAD",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+    ]
     headers: t.Annotated[dict | None, None] = None
     response_header: t.Annotated[bool, True | False] = False
     response_body: t.Annotated[bool, True | False] = False
@@ -170,7 +178,15 @@ async def startup_event(params: RequestParams) -> None:
 @app.post("/load")
 async def load(
     url: str,
-    method: t.Literal["GET", "POST"],
+    method: t.Literal[
+        "GET",
+        "OPTIONS",
+        "HEAD",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+    ],
     headers: t.Annotated[dict | None, None] = None,
     response_header: t.Annotated[bool, True | False] = False,
     response_body: t.Annotated[bool, True | False] = False,
