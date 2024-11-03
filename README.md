@@ -22,11 +22,12 @@ You just need Python installed on the target machine, and that's it. No more
 worrying about virtual environments. **One file**, **one command**, and you get
 your beautiful FastAPI Swagger UI ready to work.
 
-## Live demo
+## Installation
+
+### Live demo
 
 [![asciicast](https://asciinema.org/a/686996.svg)](https://asciinema.org/a/686996)
 
-## Installation
 
 ```shell
 curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.2/scapi.py
