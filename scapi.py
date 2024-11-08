@@ -2,6 +2,7 @@
 # /// script
 # dependencies = [
 #   "uvicorn>=0.32.0",
+#   "uvloop>=0.21.0",
 #   "fastapi>=0.115.4",
 #   "structlog>=24.4.0",
 #   "httpx>=0.27.2",
@@ -17,10 +18,12 @@ from dataclasses import dataclass
 import httpx
 import structlog
 import uvicorn
+import uvloop
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
+
 
 STATUS_CODES_COUNTER = defaultdict(int)
 
@@ -236,5 +239,7 @@ async def results() -> JSONResponse:
 
 
 if __name__ == "__main__":
-    logger.info("SCAPI Version", version=__version__)
+    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    loop = asyncio.get_event_loop_policy()
+    logger.info("SCAPI Version", version=__version__, loop=type(loop))
     uvicorn.run(app, host="0.0.0.0", port=8000)

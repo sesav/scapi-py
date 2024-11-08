@@ -30,11 +30,11 @@ your beautiful FastAPI Swagger UI ready to work.
 
 
 ```shell
-curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.2/scapi.py
+curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.3/scapi.py
 ```
 or
 ```shell
-wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.2/scapi.py
+wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.3/scapi.py
 ```
 
 Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
