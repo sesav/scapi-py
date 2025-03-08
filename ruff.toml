@@ -1,5 +1,5 @@
-target-version = "py310"
-line-length = 80
+target-version = "py312"
+line-length = 100
 fix = true
 
 [lint]
@@ -45,6 +45,10 @@ select = [
     "UP",      # pyupgrade
     "W",       # pycodestyle warnings
     "YTT",     # flake8-2020
+]
+
+ignore = [
+    "COM812", # Checks for the absence of trailing commas
 ]
 
 [format]

@@ -51,7 +51,10 @@ async def test_load_get_endpoint(
     response_header: bool,
     response_body: bool,
 ):
-    async with httpx.AsyncClient(app=app, base_url="http://test") as client:
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
         params = {
             "url": "http://example.com",
             "method": method,
@@ -96,7 +99,10 @@ async def test_done_callback():
 
 @pytest.mark.asyncio
 async def test_results_endpoint():
-    async with httpx.AsyncClient(app=app, base_url="http://test") as client:
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
         response = await client.get("/results")
     assert response.status_code == 200
     assert "results" in response.json()
