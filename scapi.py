@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # /// script
 # dependencies = [
-#   "uvicorn>=0.32.0",
-#   "uvloop>=0.21.0",
-#   "fastapi>=0.115.4",
-#   "structlog>=24.4.0",
-#   "httpx>=0.27.2",
+#   "fastapi==0.115.11",
+#   "httpx==0.28.1",
+#   "structlog==25.1.0",
+#   "uvicorn==0.34.0",
+#   "uvloop==0.21.0",
 # ]
 # ///
 
@@ -68,9 +68,7 @@ def done_callback(task: asyncio.Task) -> None:
     response_data = None
 
     try:
-        url, method, result, response_header, response_body, request_time = (
-            task.result()
-        )
+        url, method, result, response_header, response_body, request_time = task.result()
     except asyncio.CancelledError:
         logger.info("Task was cancelled")
         return

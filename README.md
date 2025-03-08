@@ -30,11 +30,11 @@ your beautiful FastAPI Swagger UI ready to work.
 
 
 ```shell
-curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.3/scapi.py
+curl -LOs https://github.com/coffeewasmyidea/scapi/releases/download/0.2.4/scapi.py
 ```
 or
 ```shell
-wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.3/scapi.py
+wget https://github.com/coffeewasmyidea/scapi/releases/download/0.2.4/scapi.py
 ```
 
 Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
@@ -56,7 +56,7 @@ And repeat the same steps, but this time in a container.
 
 ## Requirements
 + `wget` or `curl`;
-+ Python version 3.10* or higher;
++ Python version 3.12* or higher;
 + Install the [uv](https://docs.astral.sh/uv/getting-started/installation/);
 
 \* It may work on other versions, but I haven't tested them as I don't see much

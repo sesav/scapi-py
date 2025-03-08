@@ -30,8 +30,5 @@ jobs:
           pip install uv
           make install
 
-      - name: Run ruff
-        run: make ruff
-
       - name: Run pre-commit
         run: make lint
