@@ -96,4 +96,4 @@ JMeter, and others.
 ## License
 
 This repository is licensed under the [MIT
-License](https://8am.dev/enodllew/scapi/blob/main/LICENSE)
+License](https://8am.dev/enodllew/scapi/src/branch/main/LICENSE)
