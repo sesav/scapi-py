@@ -5,8 +5,8 @@ Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built
 on FastAPI.
 
 ---
-**Source Code**: <a href="https://8am.dev/enodllew/scapi.git"
-target="_blank">https://8am.dev/enodllew/scapi</a>
+**Source Code**: <a href="https://github.com/enodllew/scapi.git"
+target="_blank">https://github.com/enodllew/scapi.git</a>
 
 Sometimes, I need a simple tool to make a few requests to external APIs, create
 a bit of load, experiment with headers, check the average response time, and so
@@ -30,11 +30,11 @@ your beautiful FastAPI Swagger UI ready to work.
 
 
 ```shell
-curl -LOs https://8am.dev/enodllew/scapi/releases/download/latest/scapi.py
+curl -LOs https://github.com/enodllew/scapi/releases/latest/download/scapi.py
 ```
 or
 ```shell
-wget https://8am.dev/enodllew/scapi/releases/download/latest/scapi.py
+wget https://github.com/enodllew/scapi/releases/latest/download/scapi.py
 ```
 
 Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
@@ -96,4 +96,4 @@ JMeter, and others.
 ## License
 
 This repository is licensed under the [MIT
-License](https://8am.dev/enodllew/scapi/blob/main/LICENSE)
+License](https://github.com/enodllew/scapi/blob/0.2.4/LICENSE)
