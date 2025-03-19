@@ -1,10 +1,7 @@
 # scapi
 
-![](https://img.shields.io/github/v/release/enodllew/scapi)
-![](https://img.shields.io/github/stars/enodllew/scapi)
 ![](https://img.shields.io/github/downloads/enodllew/scapi/total)
 ![](https://img.shields.io/github/repo-size/enodllew/scapi)
-![](https://img.shields.io/github/release-date/enodllew/scapi)
 ![](https://img.shields.io/github/last-commit/enodllew/scapi)
 ![](https://img.shields.io/github/languages/top/enodllew/scapi)
 
