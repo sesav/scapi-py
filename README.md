@@ -10,7 +10,7 @@ on FastAPI.
 
 ---
 **Source Code**: <a href="https://github.com/ssilaev/scapi.git"
-target="_blank">https://github.com/enodllew/scapi.git</a>
+target="_blank">https://github.com/ssilaev/scapi.git</a>
 
 Sometimes, I need a simple tool to make a few requests to external APIs, create
 a bit of load, experiment with headers, check the average response time, and so
@@ -34,11 +34,11 @@ your beautiful FastAPI Swagger UI ready to work.
 
 
 ```shell
-curl -LOs https://github.com/enodllew/scapi/releases/latest/download/scapi.py
+curl -LOs https://github.com/ssilaev/scapi/releases/latest/download/scapi.py
 ```
 or
 ```shell
-wget https://github.com/enodllew/scapi/releases/latest/download/scapi.py
+wget https://github.com/ssilaev/scapi/releases/latest/download/scapi.py
 ```
 
 Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
