@@ -9,7 +9,7 @@ Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built
 on FastAPI.
 
 ---
-**Source Code**: <a href="https://github.com/enodllew/scapi.git"
+**Source Code**: <a href="https://github.com/ssilaev/scapi.git"
 target="_blank">https://github.com/enodllew/scapi.git</a>
 
 Sometimes, I need a simple tool to make a few requests to external APIs, create
@@ -100,4 +100,4 @@ JMeter, and others.
 ## License
 
 This repository is licensed under the [MIT
-License](https://github.com/enodllew/scapi/blob/0.2.4/LICENSE)
+License](https://github.com/ssilaev/scapi/blob/0.2.4/LICENSE)
