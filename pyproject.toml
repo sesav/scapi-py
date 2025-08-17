@@ -1,5 +1,5 @@
 [project]
-name = "scapi"
+name = "scapi-py"
 version = "0.2.4"
 description = "Dead simple, self-contained, single-file API load testing tool built on FastAPI."
 readme = "README.md"

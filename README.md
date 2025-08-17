@@ -1,9 +1,9 @@
 # SCAPI
 
-![Total](https://img.shields.io/github/downloads/sesav/scapi/total)
+![Total](https://img.shields.io/github/downloads/sesav/scapi-py/total)
 ![Python Version](https://img.shields.io/badge/python-3.12+-blue)
-![License](https://img.shields.io/github/license/sesav/scapi)
-![Codecov](https://img.shields.io/codecov/c/github/sesav/scapi)
+![License](https://img.shields.io/github/license/sesav/scapi-py)
+![Codecov](https://img.shields.io/codecov/c/github/sesav/scapi-py)
 ![Version](https://img.shields.io/badge/version-0.2.4-green)
 
 > Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
@@ -28,7 +28,7 @@ just launch it and start testing, no extra configuration required.
 
 ```bash
 # Download the tool
-curl -LOs https://github.com/sesav/scapi/releases/latest/download/scapi.py
+curl -LOs https://github.com/sesav/scapi-py/releases/latest/download/scapi.py
 
 # Install uv (if not already installed)
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -98,8 +98,8 @@ long-running benchmarks.
 
 ```bash
 # Clone the repository
-git clone https://github.com/sesav/scapi.git
-cd scapi
+git clone https://github.com/sesav/scapi-py.git
+cd scapi-py
 
 # Install development dependencies
 make install
