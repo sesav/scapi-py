@@ -1,7 +1,8 @@
 # SCAPI
 
-![License](https://img.shields.io/github/license/sesav/scapi)
+![Total](https://img.shields.io/github/downloads/sesav/scapi/total)
 ![Python Version](https://img.shields.io/badge/python-3.12+-blue)
+![License](https://img.shields.io/github/license/sesav/scapi)
 ![Codecov](https://img.shields.io/codecov/c/github/sesav/scapi)
 ![Version](https://img.shields.io/badge/version-0.2.4-green)
 
