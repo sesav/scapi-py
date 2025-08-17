@@ -1,6 +1,6 @@
 [project]
 name = "scapi-py"
-version = "0.2.4"
+version = "0.2.5"
 description = "Dead simple, self-contained, single-file API load testing tool built on FastAPI."
 readme = "README.md"
 authors = [{ name = "Sergey Silaev", email = "hello@8am.dev" }]
