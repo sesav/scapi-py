@@ -240,4 +240,4 @@ if __name__ == "__main__":
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     loop = asyncio.get_event_loop_policy()
     logger.info("SCAPI Version", version=__version__, loop=type(loop))
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("scapi:app", workers=1, host="0.0.0.0", port=8000)
