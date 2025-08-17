@@ -1,10 +1,9 @@
 # SCAPI
 
 ![Total](https://img.shields.io/github/downloads/sesav/scapi-py/total)
-![Python Version](https://img.shields.io/badge/python-3.12+-blue)
+![Python Version](https://img.shields.io/badge/python-3.10+-blue)
+[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi)
 ![License](https://img.shields.io/github/license/sesav/scapi-py)
-![Codecov](https://img.shields.io/codecov/c/github/sesav/scapi-py)
-![Version](https://img.shields.io/badge/version-0.2.4-green)
 
 > Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
 
@@ -81,10 +80,10 @@ Then follow the installation steps inside the container.
 
 ## Screenshots
 
-![Load Testing Interface](images/load.png)
+![Load Testing Interface](https://github.com/sesav/scapi-py/blob/main/images/load.png)
 *Configure your load test parameters*
 
-![Results Dashboard](images/results.png)
+![Results Dashboard](https://github.com/sesav/scapi-py/blob/main/images/results.png)
 *View real-time results and metrics*
 
 ## Limitations
@@ -113,7 +112,7 @@ make run
 
 ## Requirements
 
-- Python 3.12+
+- Python 3.10+
 - uv package manager
 - wget or curl (for installation)
 

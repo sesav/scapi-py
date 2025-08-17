@@ -49,7 +49,7 @@ test:
 	rm -r coverage; \
 	uv run coverage run --source=. -m pytest -v -p no:warnings .; \
 	uv run coverage combine; \
-	uv run coverage report --fail-under=99
+	uv run coverage report --fail-under=100
 
 clean:
 	rm -rf .venv .pytest_cache .ruff_cache .coverage coverage dist *.egg-info .deps .python-version uv.lock
