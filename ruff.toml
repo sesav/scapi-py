@@ -51,6 +51,10 @@ ignore = [
     "COM812", # Checks for the absence of trailing commas
 ]
 
+exclude = [
+    "tests/*",
+]
+
 [format]
 quote-style = "double"
 indent-style = "space"

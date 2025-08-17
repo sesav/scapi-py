@@ -1,103 +1,121 @@
-# scapi
+# SCAPI
 
-![](https://img.shields.io/github/downloads/enodllew/scapi/total)
-![](https://img.shields.io/github/repo-size/enodllew/scapi)
-![](https://img.shields.io/github/last-commit/enodllew/scapi)
-![](https://img.shields.io/github/languages/top/enodllew/scapi)
+![License](https://img.shields.io/github/license/sesav/scapi)
+![Python Version](https://img.shields.io/badge/python-3.12+-blue)
+![Codecov](https://img.shields.io/codecov/c/github/sesav/scapi)
+![Version](https://img.shields.io/badge/version-0.2.4-green)
 
-Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built
-on FastAPI.
+> Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
 
----
-**Source Code**: <a href="https://github.com/sesav/scapi.git"
-target="_blank">https://github.com/sesav/scapi.git</a>
+A lightweight utility for quickly testing external APIs. It lets you generate a
+small amount of load, experiment with headers, and measure average response
+times — nothing more. The tool is designed to run anywhere with minimal setup:
+just launch it and start testing, no extra configuration required.
 
-Sometimes, I need a simple tool to make a few requests to external APIs, create
-a bit of load, experiment with headers, check the average response time, and so
-on. I want to be able to launch this tool from any environment with one click
-without having to figure anything out.
+## Features
 
-The existing tools seemed inconvenient to me, so I created a tiny tool that
-generates load and can be launched with just one command. Thanks to the inline
-metadata format and the [uv](https://github.com/astral-sh/uv) package and
-project manager, there's no need to manually set up environments.
+- **Zero Configuration** - One file, one command;
+- **Self-Contained** - Uses uv's inline metadata format;
+- **FastAPI Swagger UI** - Beautiful web interface;
+- **Async Load Testing** - Built on httpx and asyncio;
+- **Real-time Results** - View metrics during execution;
+- **Container Ready** - Works in any Python environment.
 
-You just need Python installed on the target machine, and that's it. No more
-worrying about virtual environments. **One file**, **one command**, and you get
-your beautiful FastAPI Swagger UI ready to work.
+## Quick Start
 
-## Installation
+### Installation
 
-### Live demo
-
-[![asciicast](https://asciinema.org/a/686996.svg)](https://asciinema.org/a/686996)
-
-
-```shell
+```bash
+# Download the tool
 curl -LOs https://github.com/sesav/scapi/releases/latest/download/scapi.py
-```
-or
-```shell
-wget https://github.com/sesav/scapi/releases/latest/download/scapi.py
-```
 
-Install the [uv](https://docs.astral.sh/uv/getting-started/installation/) using
-the official script or via pip install, and then simply run:
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-```shell
+# Run the tool
 uv run scapi.py
 ```
 
-Done!
+### Usage
 
-If you want to run `scapi.py` in a container, just run:
+1. Open http://localhost:8000 in your browser
+2. Use the `/load` endpoint to send requests
+3. Check `/results` for metrics and response times
 
+## API Reference
+
+### POST /load
+Send load test requests to a target URL.
+
+**Parameters:**
+* `url` (string, required) - Target URL to test;
+* `method` (string, required) - HTTP method (GET, POST, PUT, etc.);
+* `attempts` (int, default: 10) - Number of requests to send;
+* `delay` (float, default: 0.1) - Delay between requests in seconds;
+* `headers` (object, optional) - Custom HTTP headers;
+* `body` (object, optional) - Request body for POST/PUT requests;
+* `response_header` (bool, default: false) - Include response headers in logs;
+* `response_body` (bool, default: false) - Include response body in logs.
+
+### GET /results
+Get aggregated test results and metrics.
+
+**Response:**
+```json
+{
+  "results": {
+    "200": 10,
+    "404": 2
+  },
+  "average_request_time": 0.25
+}
 ```
+
+## Docker Usage
+
+```bash
 docker run -ti --rm -p "8000:8000" python:3.12-slim-bookworm bash
 ```
+Then follow the installation steps inside the container.
 
-And repeat the same steps, but this time in a container.
+## Screenshots
+
+![Load Testing Interface](images/load.png)
+*Configure your load test parameters*
+
+![Results Dashboard](images/results.png)
+*View real-time results and metrics*
+
+## Limitations
+
+A minimal, single-threaded, memory-based tool for quick API load tests. Designed to run anywhere
+with Python and the uv binary, it generates a small number of requests and provides fast feedback
+without heavy dependencies.
+long-running benchmarks.
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/sesav/scapi.git
+cd scapi
+
+# Install development dependencies
+make install
+
+# Run tests
+make test
+
+# Run
+make run
+```
 
 ## Requirements
-+ `wget` or `curl`;
-+ Python version 3.12* or higher;
-+ Install the [uv](https://docs.astral.sh/uv/getting-started/installation/);
 
-\* It may work on other versions, but I haven't tested them as I don't see much
-point in doing so.
-
-## How to use it
-
-When the application starts, you will see two endpoints: `/load` and `/results`.
-
-It's incredibly simple to use — you just specify the domain, request method,
-delay between requests, number of attempts, headers and body (if needed), and
-whether you want to see the response body and response headers (see the
-screenshots below).
-
-You can also click "Execute" multiple times to generate more tasks for event
-loop.
-
-![load](images/load.png)
-
-At the end of or during the execution, you can also execute the
-`/results` endpoint to see the total number of requests sent, broken down by
-status, along with the average response time for requests to the specified URL.
-
-![load](images/results.png)
-
-## You should know
-
-It is important to understand this is a very simple, single-threaded
-application. Its purpose is to conduct small, quick tests by generating a
-relatively small number of requests, with the ability to run in almost any
-environment where Python is available and the `uv` binary can be copied.
-
-If you need to perform serious load testing, this application will not be
-suitable, and you should consider more robust tools such as Locust, Apache
-JMeter, and others.
+- Python 3.12+
+- uv package manager
+- wget or curl (for installation)
 
 ## License
 
-This repository is licensed under the [MIT
-License](https://github.com/sesav/scapi/blob/0.2.4/LICENSE)
+This project is licensed under the [MIT License](LICENSE).
