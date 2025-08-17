@@ -23,17 +23,36 @@ just launch it and start testing, no extra configuration required.
 
 ## Quick Start
 
-### Installation
+### Option 1: Run Directly (No Installation)
 
 ```bash
-# Download the tool
+# Download and run the tool directly
 curl -LOs https://github.com/sesav/scapi-py/releases/latest/download/scapi.py
+uv run scapi.py
 
-# Install uv (if not already installed)
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# Or with wget
+wget https://github.com/sesav/scapi-py/releases/latest/download/scapi.py
+uv run scapi.py
+```
+
+### Option 2: Install as Package
+
+```bash
+# Install from PyPI
+pip install scapi-py
 
 # Run the tool
-uv run scapi.py
+scapi
+```
+
+### Option 3: Install with uv
+
+```bash
+# Install with uv
+uv add scapi-py
+
+# Run the tool
+scapi
 ```
 
 ### Usage

@@ -1,6 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "scapi-py"
-version = "0.2.6"
+version = "1.0.0"
 description = "Dead simple, self-contained, single-file API load testing tool built on FastAPI."
 readme = "README.md"
 authors = [{ name = "Sergey Silaev", email = "hello@8am.dev" }]
@@ -25,7 +29,7 @@ classifiers = [
     "Intended Audience :: System Administrators",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python 3",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -39,7 +43,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Software Development :: Testing",
     "Topic :: Software Development :: Testing :: Traffic Generation",
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
     "Framework :: AsyncIO",
     "Framework :: FastAPI",
@@ -70,6 +74,12 @@ dev = [
 [project.urls]
 "Source code" = "https://github.com/sesav/scapi-py"
 
+[project.scripts]
+scapi = "scapi:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scapi.py"]
+
 [tool.coverage.run]
 data_file = "coverage/coverage"
 parallel = true
@@ -80,3 +90,5 @@ fail_under = 100
 skip_covered = true
 skip_empty = true
 omit = ["./tests/*.py"]
+
+# vim: ts=4 sts=4 sw=4 et

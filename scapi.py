@@ -22,7 +22,7 @@ import uvloop
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-__version__ = "0.2.3"
+__version__ = "1.0.0"
 
 
 STATUS_CODES_COUNTER = defaultdict(int)
@@ -236,8 +236,13 @@ async def results() -> JSONResponse:
     )
 
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for the scapi command-line tool."""
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     loop = asyncio.get_event_loop_policy()
     logger.info("SCAPI Version", version=__version__, loop=type(loop))
     uvicorn.run("scapi:app", workers=1, host="0.0.0.0", port=8000)
+
+
+if __name__ == "__main__":
+    main()

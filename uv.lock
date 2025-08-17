@@ -564,8 +564,8 @@ wheels = [
 
 [[package]]
 name = "scapi-py"
-version = "0.2.6"
-source = { virtual = "." }
+version = "1.0.0"
+source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "httpx" },
