@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "scapi-py"
-version = "1.0.0"
+version = "2.0.1"
 description = "Dead simple, self-contained, single-file API load testing tool built on FastAPI."
 readme = "README.md"
 authors = [{ name = "Sergey Silaev", email = "hello@8am.dev" }]
@@ -53,10 +53,11 @@ classifiers = [
 ]
 
 dependencies = [
-    "fastapi==0.115.11",
+    "fastapi==0.116.1",
     "httpx==0.28.1",
+    "pydantic>=2.11.7",
     "structlog==25.1.0",
-    "uvicorn==0.34.0",
+    "uvicorn==0.35.0",
     "uvloop==0.21.0",
 ]
 

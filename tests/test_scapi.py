@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 import httpx
 import pytest
 
-from scapi import RequestParams, app, done_callback, fetch, startup_event
+from scapi import RequestParams, app, done_callback, fetch, startup_event, Headers
 
 
 @pytest.mark.parametrize(
@@ -190,3 +190,50 @@ def test_main_block():
         mock_get_policy.return_value = Mock()
 
         exec(compile(open("scapi.py").read(), "scapi.py", "exec"), {"__name__": "__main__"})
+
+
+def test_headers_validator():
+    headers = Headers()
+    headers.header1 = "string"
+    headers.header2 = 123
+    headers.header3 = 45.67
+    assert headers.header1 == "string"
+    assert headers.header2 == "123"
+    assert headers.header3 == "45.67"
+
+
+@pytest.mark.asyncio
+async def test_load_endpoint_url_without_scheme():
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
+        response = await client.post(
+            "/load",
+            params={
+                "url": "example.com",
+                "method": "GET",
+                "attempts": 1,
+            },
+        )
+    assert response.status_code == 200
+
+
+def test_headers_json_schema():
+    schema = Headers.__get_pydantic_json_schema__(
+        Headers.__pydantic_core_schema__,
+        lambda x: {"additionalProperties": True, "properties": {"old": "prop"}},
+    )
+    assert "additionalProperties" not in schema
+    assert schema["properties"] == {}
+
+
+def test_body_json_schema():
+    from scapi import Body
+
+    schema = Body.__get_pydantic_json_schema__(
+        Body.__pydantic_core_schema__,
+        lambda x: {"additionalProperties": True, "properties": {"old": "prop"}},
+    )
+    assert "additionalProperties" not in schema
+    assert schema["properties"] == {}

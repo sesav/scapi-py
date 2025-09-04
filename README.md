@@ -2,7 +2,7 @@
 
 ![Total](https://img.shields.io/github/downloads/sesav/scapi-py/total)
 ![Python Version](https://img.shields.io/badge/python-3.10+-blue)
-[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi)
+[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi) a
 ![License](https://img.shields.io/github/license/sesav/scapi-py)
 
 > Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
@@ -18,7 +18,7 @@ just launch it and start testing, no extra configuration required.
 - **Self-Contained** - Uses uv's inline metadata format;
 - **FastAPI Swagger UI** - Beautiful web interface;
 - **Async Load Testing** - Built on httpx and asyncio;
-- **Real-time Results** - View metrics during execution;
+- **Real-time Results** - View metrics (stdout) during execution;
 - **Container Ready** - Works in any Python environment.
 
 ## Quick Start

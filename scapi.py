@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # /// script
 # dependencies = [
-#   "fastapi==0.115.11",
+#   "fastapi==0.116.1",
 #   "httpx==0.28.1",
+#   "pydantic==2.11.7",
 #   "structlog==25.1.0",
-#   "uvicorn==0.34.0",
+#   "uvicorn==0.35.0",
 #   "uvloop==0.21.0",
 # ]
 # ///
@@ -14,6 +15,7 @@ import time
 import typing as t
 from collections import defaultdict
 from dataclasses import dataclass
+from urllib.parse import urlparse, urlunparse
 
 import httpx
 import structlog
@@ -21,8 +23,36 @@ import uvicorn
 import uvloop
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
-__version__ = "1.0.0"
+__version__ = "2.0.1"
+
+
+class Headers(BaseModel):
+    model_config = {"extra": "allow"}
+
+    def __setattr__(self, name: str, value: t.Any) -> None:
+        if value is not None and not isinstance(value, str):
+            value = str(value)
+        super().__setattr__(name, value)
+
+    @classmethod
+    def __get_pydantic_json_schema__(cls, core_schema: t.Any, handler: t.Any) -> dict[str, t.Any]:
+        json_schema = handler(core_schema)
+        json_schema.pop("additionalProperties", None)
+        json_schema["properties"] = {}
+        return json_schema
+
+
+class Body(BaseModel):
+    model_config = {"extra": "allow"}
+
+    @classmethod
+    def __get_pydantic_json_schema__(cls, core_schema: t.Any, handler: t.Any) -> dict[str, t.Any]:
+        json_schema = handler(core_schema)
+        json_schema.pop("additionalProperties", None)
+        json_schema["properties"] = {}
+        return json_schema
 
 
 STATUS_CODES_COUNTER = defaultdict(int)
@@ -45,10 +75,10 @@ class RequestParams:
         "PATCH",
         "DELETE",
     ]
-    headers: t.Annotated[dict | None, None] = None
-    response_header: t.Annotated[bool, True | False] = False
-    response_body: t.Annotated[bool, True | False] = False
-    body: t.Annotated[dict | None, None] = None
+    headers: dict[str, str] | None = None
+    response_header: bool = False
+    response_body: bool = False
+    body: dict[str, str] | None = None
     attempts: int = 10
     delay: float = 0.1
 
@@ -126,7 +156,9 @@ async def fetch(
     await asyncio.sleep(params.delay)
 
     headers = params.headers or {}
-    headers["User-Agent"] = "SCAPI/1.0"
+    headers = {k: str(v) for k, v in headers.items()}
+    headers["User-Agent"] = f"SCAPI/{__version__}"
+
     if params.body:
         headers["Content-Type"] = "application/json"
         headers["Accept"] = "application/json"
@@ -136,7 +168,7 @@ async def fetch(
     try:
         result = await (
             do_request(params.url, headers=headers, json=params.body)
-            if params.body
+            if params.method == "POST"
             else do_request(params.url, headers=headers)
         )
     except httpx.RequestError as err:
@@ -173,36 +205,34 @@ async def startup_event(params: RequestParams) -> None:
             await t
 
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #     - API Endpoints -
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 @app.post("/load")
 async def load(
     url: str,
-    method: t.Literal[
-        "GET",
-        "OPTIONS",
-        "HEAD",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE",
-    ],
-    headers: t.Annotated[dict | None, None] = None,
-    response_header: t.Annotated[bool, True | False] = False,
-    response_body: t.Annotated[bool, True | False] = False,
-    body: t.Annotated[dict | None, None] = None,
+    method: t.Literal["GET", "OPTIONS", "HEAD", "POST", "PUT", "PATCH", "DELETE"],
+    headers: Headers | None = None,
+    response_header: bool = False,
+    response_body: bool = False,
+    body: Body | None = None,
     attempts: int = 10,
     delay: float = 0.1,
 ) -> JSONResponse:
     """Endpoint to make asynchronous HTTP requests."""
     background_tasks = set()
 
+    def ensure_https(url: str) -> str:
+        parsed = urlparse(url)
+        if not parsed.scheme:
+            parsed = urlparse("https://" + url)
+        return urlunparse(parsed)
+
     params = RequestParams(
-        url=url,
-        headers=headers,
+        url=ensure_https(url),
+        headers=headers.model_dump() if headers else None,
         method=method,
-        body=body,
+        body=body.model_dump() if body else None,
         response_header=response_header,
         response_body=response_body,
         attempts=attempts,
