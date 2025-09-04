@@ -106,14 +106,10 @@ Then follow the installation steps inside the container.
 
 ## Limitations
 
-It's important to understand that this is a very simple, single-threaded
-application. Its purpose is to perform small, quick tests by generating a
-limited number of requests, and it can run in almost any environment where the
-uv binary is available.
-
-Keep in mind that it only produces a limited number of requests per second. If
-you need serious load testing at scale, consider more robust solutions such as
-Locust, Apache JMeter, or similar tools.
+It's important to understand that this is a very simple, single-threaded application. Its purpose
+is to perform small, quick tests by generating a limited number of requests, and it can run in
+almost any environment where the uv binary is available. If you need serious load testing at scale,
+consider more robust solutions such as Locust, Apache JMeter, or similar tools.
 
 ## Development
 
