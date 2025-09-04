@@ -2,26 +2,25 @@
 
 ![Total](https://img.shields.io/github/downloads/sesav/scapi-py/total)
 ![Python Version](https://img.shields.io/badge/python-3.10+-blue)
-[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi) a
+[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi)
 ![License](https://img.shields.io/github/license/sesav/scapi-py)
 
 > Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
 
-A lightweight utility for quickly testing external APIs. It lets you generate a
-small amount of load, experiment with headers, and measure average response
-times — nothing more. The tool is designed to run anywhere with minimal setup:
-just launch it and start testing, no extra configuration required.
+A lightweight tool for ad-hoc API testing. It generates controlled request loads, customizes headers and payloads, collects latency metrics, and runs anywhere with minimal setup — just launch and start testing.
 
 ## Features
 
-- **Zero Configuration** - One file, one command;
-- **Self-Contained** - Uses uv's inline metadata format;
-- **FastAPI Swagger UI** - Beautiful web interface;
-- **Async Load Testing** - Built on httpx and asyncio;
-- **Real-time Results** - View metrics (stdout) during execution;
-- **Container Ready** - Works in any Python environment.
+- **Zero Configuration** - One file, one command
+- **Self-Contained** - Uses uv's inline metadata format
+- **FastAPI Swagger UI** - Beautiful Swagger UI interface;
+- **Async Load Testing** - Built on httpx (encode) and asyncio
+- **Real-time Results** - View metrics in stdout during execution
+- **Container Ready** - Works in any environment (uv handles it)
 
 ## Quick Start
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) with the official script or via pip if Python is available on your laptop or server.
 
 ### Option 1: Run Directly (No Installation)
 
@@ -67,14 +66,14 @@ scapi
 Send load test requests to a target URL.
 
 **Parameters:**
-* `url` (string, required) - Target URL to test;
-* `method` (string, required) - HTTP method (GET, POST, PUT, etc.);
-* `attempts` (int, default: 10) - Number of requests to send;
-* `delay` (float, default: 0.1) - Delay between requests in seconds;
-* `headers` (object, optional) - Custom HTTP headers;
-* `body` (object, optional) - Request body for POST/PUT requests;
-* `response_header` (bool, default: false) - Include response headers in logs;
-* `response_body` (bool, default: false) - Include response body in logs.
+* `url` (string, required) - Target URL to test
+* `method` (string, required) - HTTP method (GET, POST, PUT, etc.)
+* `attempts` (int, default: 10) - Number of requests to send
+* `delay` (float, default: 0.1) - Delay between requests in seconds
+* `headers` (dict, optional) - Custom HTTP headers
+* `body` (dict, optional) - Request body for POST/PUT requests
+* `response_header` (bool, default: false) - Include response headers in stdout
+* `response_body` (bool, default: false) - Include response body in stdout
 
 ### GET /results
 Get aggregated test results and metrics.
@@ -107,10 +106,14 @@ Then follow the installation steps inside the container.
 
 ## Limitations
 
-A minimal, single-threaded, memory-based tool for quick API load tests. Designed to run anywhere
-with Python and the uv binary, it generates a small number of requests and provides fast feedback
-without heavy dependencies.
-long-running benchmarks.
+It's important to understand that this is a very simple, single-threaded
+application. Its purpose is to perform small, quick tests by generating a
+limited number of requests, and it can run in almost any environment where the
+uv binary is available.
+
+Keep in mind that it only produces a limited number of requests per second. If
+you need serious load testing at scale, consider more robust solutions such as
+Locust, Apache JMeter, or similar tools.
 
 ## Development
 
