@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # /// script
 # dependencies = [
-#   "fastapi==0.116.1",
+#   "fastapi==0.121.1",
 #   "httpx==0.28.1",
-#   "pydantic==2.11.7",
-#   "structlog==25.1.0",
-#   "uvicorn==0.35.0",
-#   "uvloop==0.21.0",
+#   "pydantic==2.12.4",
+#   "structlog==25.5.0",
+#   "uvicorn==0.38.0",
+#   "uvloop==0.22.1",
 # ]
 # ///
 
@@ -25,7 +25,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 
 
 class Headers(BaseModel):
