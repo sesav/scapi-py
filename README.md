@@ -2,7 +2,7 @@
 
 ![Total](https://img.shields.io/github/downloads/sesav/scapi-py/total)
 ![Python Version](https://img.shields.io/badge/python-3.10+-blue)
-[![codecov](https://codecov.io/github/sesav/scapi/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi)
+[![codecov](https://codecov.io/github/sesav/scapi-py/graph/badge.svg?token=GSHBWZGXAH)](https://codecov.io/github/sesav/scapi-py)
 ![License](https://img.shields.io/github/license/sesav/scapi-py)
 
 > Dead simple, **S**elf-**C**ontained, single-file **API** load testing tool built on FastAPI.
