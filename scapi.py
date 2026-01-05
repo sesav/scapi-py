@@ -25,7 +25,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-__version__ = "2.0.3"
+__version__ = "2.0.4"
 
 
 class Headers(BaseModel):

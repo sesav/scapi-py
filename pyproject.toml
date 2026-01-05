@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "scapi-py"
-version = "2.0.3"
+version = "2.0.4"
 description = "Dead simple, self-contained, single-file API load testing tool built on FastAPI."
 readme = "README.md"
 authors = [{ name = "Sergey Silaev", email = "hello@8am.dev" }]
