@@ -13,22 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code from the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Set up Python environment
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v5
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+          version: "0.9.21"
+
+      - name: Python version
+        run: python -V
+
+      - name: Uv version
+        run: uv --version
 
       # Install dependencies
       - name: Install dependencies
-        run: |
-          pip install -U pip setuptools wheel
-          pip install uv
-          make install
+        run: make install
 
       - name: Run pre-commit
         run: make lint
